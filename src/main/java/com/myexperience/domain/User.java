@@ -1,10 +1,16 @@
 package com.myexperience.domain;
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.springframework.format.annotation.DateTimeFormat;
 /**
  * Created by zilat on 31.05.2017.
  */
@@ -17,25 +23,75 @@ public class User {
     @Column(unique = true, nullable = false, precision = 19)
     private long id;
 
-    @Column(name = "name", length = 255, nullable = false)
-    private String name;
+    @Column(name = "firstName", length = 255, nullable = false)
+    private String firstName;
+    
+    @Column(name = "lastName", length = 255, nullable = false)
+    private String lastName;
+    
+    @Column(name = "email", length = 255, nullable = false)
+    private String email;
+
+    @Column(name = "registredDate", nullable = false)
+    @Temporal(TemporalType.TIMESTAMP)
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private Date registredDate;
+    
 
     public User() {
     }
 
-    public long getId() {
-        return id;
-    }
+	public long getId()
+	{
+		return id;
+	}
 
-    public String getName() {
-        return name;
-    }
+	public void setId(long id)
+	{
+		this.id = id;
+	}
 
-    public void setId(long id) {
-        this.id = id;
-    }
+	public String getFirstName()
+	{
+		return firstName;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public void setFirstName(String firstName)
+	{
+		this.firstName = firstName;
+	}
+
+	public String getLastName()
+	{
+		return lastName;
+	}
+
+	public void setLastName(String lastName)
+	{
+		this.lastName = lastName;
+	}
+
+	
+	public String getEmail()
+	{
+		return email;
+	}
+
+	public void setEmail(String email)
+	{
+		this.email = email;
+	}
+
+	public Date getRegistredDate()
+	{
+		return registredDate;
+	}
+
+	public void setRegistredDate(Date registredDate)
+	{
+		this.registredDate = registredDate;
+	}
+
+    
+    
 }

@@ -42,4 +42,35 @@ public class UserController
 		return userService.add(user);
 		
 	}
+	
+	@RequestMapping(value = "/users/{email}", method = RequestMethod.GET)
+	public ResponseEntity<User> getUserByEmail(
+			@ApiParam(name = "version", defaultValue = "v1") @PathVariable("version") String version, 
+			@ApiParam(name = "email") @PathVariable("email") String email
+			)
+	{
+		User user = userService.findUserByEmail(email);
+		return new ResponseEntity<>(user, HttpStatus.OK);		
+	}
+	
+	@RequestMapping(value = "/users/{lastname}", method = RequestMethod.GET)
+	public ResponseEntity<List<User>> getUsersByLastName(
+			@ApiParam(name = "version", defaultValue = "v1") @PathVariable("version") String version,
+			@ApiParam(name = "lastname") @PathVariable("lastname") String lastname
+			)
+	{
+		List<User> userList = userService.findUsersByLastName(lastname);
+		return new ResponseEntity<>(userList, HttpStatus.OK);		
+	}
+	
+	@RequestMapping(value = "/users/{lastname}/{firstname}", method = RequestMethod.GET)
+	public ResponseEntity<List<User>> getUsersByLastNameAndFistName(
+			@ApiParam(name = "version", defaultValue = "v1") @PathVariable("version") String version,
+			@ApiParam(name = "lastname") @PathVariable("lastname") String lastname,
+			@ApiParam(name = "firstname") @PathVariable("firstname") String firstname
+			)
+	{
+		List<User> userList = userService.findUsersByLastNameAndFistName(lastname, firstname);
+		return new ResponseEntity<>(userList, HttpStatus.OK);		
+	}
 }
