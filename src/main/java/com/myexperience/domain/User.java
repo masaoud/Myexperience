@@ -1,11 +1,15 @@
 package com.myexperience.domain;
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -37,6 +41,8 @@ public class User {
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date registredDate;
     
+    @OneToMany(mappedBy="user")
+    private List<Experience> experiences;
 
     public User() {
     }
@@ -91,7 +97,6 @@ public class User {
 	{
 		this.registredDate = registredDate;
 	}
-
-    
+  
     
 }

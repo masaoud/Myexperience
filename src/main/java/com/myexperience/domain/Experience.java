@@ -6,11 +6,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import org.springframework.format.annotation.DateTimeFormat;
+
 /**
  * Created by zilat on 31.05.2017.
  */
@@ -36,7 +39,10 @@ public class Experience {
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createdDate;
     
-
+    @ManyToOne
+	@JoinColumn(name = "user_id", nullable = false)
+	private User user;
+	
     public Experience() {
     }
 
@@ -87,6 +93,21 @@ public class Experience {
 	{
 		this.createdDate = createdDate;
 	}
+
+
+	public User getUser()
+	{
+		return user;
+	}
+
+
+	public void setUser(User user)
+	{
+		this.user = user;
+	}
+	
+	
+	
 
     
 }
