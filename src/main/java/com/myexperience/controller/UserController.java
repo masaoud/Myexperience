@@ -43,7 +43,7 @@ public class UserController
 		
 	}
 	
-	@RequestMapping(value = "/users/{email}", method = RequestMethod.GET)
+	@RequestMapping(value = "/users/searchByEmail/{email}", method = RequestMethod.GET)
 	public ResponseEntity<User> getUserByEmail(
 			@ApiParam(name = "version", defaultValue = "v1") @PathVariable("version") String version, 
 			@ApiParam(name = "email") @PathVariable("email") String email
@@ -53,7 +53,7 @@ public class UserController
 		return new ResponseEntity<>(user, HttpStatus.OK);		
 	}
 	
-	@RequestMapping(value = "/users/{lastname}", method = RequestMethod.GET)
+	@RequestMapping(value = "/users/searchByLastname/{lastname}", method = RequestMethod.GET)
 	public ResponseEntity<List<User>> getUsersByLastName(
 			@ApiParam(name = "version", defaultValue = "v1") @PathVariable("version") String version,
 			@ApiParam(name = "lastname") @PathVariable("lastname") String lastname
@@ -63,7 +63,7 @@ public class UserController
 		return new ResponseEntity<>(userList, HttpStatus.OK);		
 	}
 	
-	@RequestMapping(value = "/users/{lastname}/{firstname}", method = RequestMethod.GET)
+	@RequestMapping(value = "/users/searchByNames/{lastname}/{firstname}", method = RequestMethod.GET)
 	public ResponseEntity<List<User>> getUsersByLastNameAndFistName(
 			@ApiParam(name = "version", defaultValue = "v1") @PathVariable("version") String version,
 			@ApiParam(name = "lastname") @PathVariable("lastname") String lastname,
