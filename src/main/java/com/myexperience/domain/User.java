@@ -41,7 +41,7 @@ public class User {
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date registredDate;
     
-    @OneToMany(mappedBy="user")
+    @OneToMany(mappedBy="user", fetch = FetchType.EAGER, cascade = { CascadeType.ALL })
     private List<Experience> experiences;
 
     public User() {

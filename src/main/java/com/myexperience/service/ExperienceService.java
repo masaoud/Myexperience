@@ -14,13 +14,14 @@ public class ExperienceService
 	@Autowired
 	private ExperienceRepository experienceRepository;
 	
-	public void add(Experience experience)
+	public Experience add(Experience experience)
 	{
 		String experienceBody = experience.getBody();
 		if (experienceBody.length() > 50)
 		{
 			experienceRepository.save(experience);
 		}
+		return experience;
 	}
 	
 	public List<Experience> findAll()

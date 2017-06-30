@@ -1,5 +1,6 @@
 package com.myexperience.domain;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -10,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -32,7 +34,7 @@ public class Experience {
     @Column(name = "title", length = 255, nullable = false)
     private String title;
     
-    @Column(name = "body", length = 255, nullable = false)
+    @Column(name = "body", columnDefinition="TEXT", nullable = false)
     private String body;
     
 
@@ -41,9 +43,12 @@ public class Experience {
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createdDate;
     
-    @ManyToOne(fetch = FetchType.EAGER, cascade = { CascadeType.ALL })
+    @ManyToOne
 	@JoinColumn(name = "user_id", nullable = false)
 	private User user;
+    
+    @OneToMany(mappedBy="experience", fetch = FetchType.EAGER, cascade = { CascadeType.ALL })
+    private List<Rating> ratings;
 	
     public Experience() {
     }
@@ -107,9 +112,17 @@ public class Experience {
 	{
 		this.user = user;
 	}
-	
-	
-	
 
-    
+
+	public List<Rating> getRatings()
+	{
+		return ratings;
+	}
+
+
+	public void setRatings(List<Rating> ratings)
+	{
+		this.ratings = ratings;
+	}
+	    
 }

@@ -14,9 +14,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.myexperience.domain.Experience;
-import com.myexperience.domain.Rating;
 import com.myexperience.service.ExperienceService;
-import com.myexperience.service.RatingService;
 
 import io.swagger.annotations.ApiParam;
 
@@ -39,9 +37,9 @@ public class ExperienceController
 	
 	@RequestMapping(value = "/experience", method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.CREATED)
-	public void create(@RequestBody Experience experience, @ApiParam(name = "version", defaultValue = "v1") @PathVariable("version") String version)
+	public Experience create(@RequestBody Experience experience, @ApiParam(name = "version", defaultValue = "v1") @PathVariable("version") String version)
 	{
-		experienceService.add(experience);
+		return experienceService.add(experience);
 		
 	}
 
