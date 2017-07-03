@@ -2,9 +2,12 @@ package com.myexperience.service;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.myexperience.LoggingExamples;
 import com.myexperience.domain.User;
 import com.myexperience.repository.UserRepository;
 
@@ -13,6 +16,8 @@ public class UserService
 {
 	@Autowired
 	private UserRepository userRepository;
+	
+	private final static Logger LOGGER = LoggerFactory.getLogger(UserService.class);
 	
 	public User add(User user)	
 	{
@@ -32,6 +37,7 @@ public class UserService
 	
 	public User findUserByEmail(String email)
 	{
+		
 		return this.userRepository.findByEmail(email);
 	}
 	
